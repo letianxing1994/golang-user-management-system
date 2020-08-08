@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package grpc_service;
+
+// The user service definition
+service UserService {
+    
+	//grpc for log in from mysql api
+	rpc LogIn (LogInRequest) returns (LogInReply) {}
+	//grpc for log in from cache redis api
+	rpc LogInCache (LogInCacheRequest) returns (LogInReply) {}
+
+	//grpc for nickname modification from mysql api
+	rpc ModifyNickName (ModifyNickNameRequest) returns (UsrOpReply) {}
+	//grpc for nickname modification from cache redis api
+	rpc ModifyNickNameCache (ModifyNickNameCacheRequest) returns (UsrOpReply) {}
+
+	//grpc for profile picture upload from mysql api
+	rpc UploadProfile (UploadProfileRequest) returns (UsrOpReply) {}
+	//grpc for profile picture upload from cache redis api
+	rpc UploadProfileCache (UploadProfileCacheRequest) returns (UsrOpReply) {}
+
+	//grpc write mysql to redis
+	rpc MysqlToCache (MysqlToCacheRequest) returns (UsrOpReply) {}
+}
+
+// The log in request message containing username and password.
+message LogInRequest {
+	string Username = 1;
+	string Password = 2;
+}
+
+// The log in request message containing .
+message LogInCacheRequest {
+	string token = 1;
+}
+
+// The modify nickname request message containing user's id and modified nickname.
+message ModifyNickNameRequest {
+	int64 User_id = 1;
+	string Nickname = 2;
+}
+
+// The upload profile picture request message containing user's id and profile picture.
+message UploadProfileRequest {
+	int64 User_id = 1;
+	string Profile_picture = 2;
+}
+
+// request for putting data into mysql
+message MysqlToCacheRequest {
+	string token = 1;
+	int64 User_id = 2;
+	string Username = 3;
+	string Password = 4;
+	string Nickname = 5;
+	string Profile_picture = 6;
+}
+
+// request message used for modifying nickname in cache
+message ModifyNickNameCacheRequest{
+	string token = 1;
+	string Nickname = 2;
+}
+
+// request message used for uploading profile picture in cache
+message UploadProfileCacheRequest{
+	string token = 1;
+	string profile_picture = 2;
+}
+
+// The response message containing the info of a user.
+message LogInReply {
+	int64 User_id = 1;
+	string Username = 2;
+	string Password = 3;
+	string Nickname = 4;
+	string Profile_picture = 5;
+}
+
+// The response message containing the info of user's operation.
+message UsrOpReply {
+	string message = 1;
+}
+

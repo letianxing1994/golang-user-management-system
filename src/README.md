@@ -149,7 +149,7 @@
 ## **9. [缓存层设计]**
 缓存用redis, redis是一个单线程复用的key-value型nosql数据库。使用redis可以有效减缓mysql的压力，在高并发下有助于系统访问。此处运用redis存储键为用户登陆后生成的token, 值为用户的信息。
 
-## **10. [性能测试前期准备] **
+## **10. [性能测试前期准备]**
 1. 对于login接口，首先用appendix下的writeAllClients和write2000clients程序进行用户信息记录。每一行代表一个用户名和密码，用逗号作为间隔。
 2. 对于modifyNickname和uploadProfile接口，由于需要鉴权，必须获取token进行接口测试。此处，有两个方法解决这个问题：
 	1. 使用appendix下的crawl程序对服务器进行访问，根据指定用户数量生成记录token的文件，然后用token文件作为jmeter的测量参数
@@ -164,7 +164,7 @@
 
 ![截屏2020-08-09 下午6.15.41.png](https://i.loli.net/2020/08/09/zeoGEyKQ4hk83dB.png)
 
-## **11. [性能测试报告] **
+## **11. [性能测试报告]**
 1. 根据要求，使用jmeter进行了性能测试，此处吞吐量可作为QPS指标。
 
 - LogIn接口测试

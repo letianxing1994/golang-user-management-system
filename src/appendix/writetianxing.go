@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	stmt, err := db.Prepare("insert into user_tab (username, password, nickname) values (?, ?, ?)")
+	stmt, err := db.Prepare("insert into user_tab1 (username, password, nickname) values (?, ?, ?)")
 	if err != nil {
 		log.Fatal(err)
 		return

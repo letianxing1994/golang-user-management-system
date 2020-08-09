@@ -27,7 +27,7 @@ func writeToDb(filename string, db *sql.DB) {
 		//mutexDB.Lock()
 		str := input.Text()
 		usrPwd := strings.Split(str, " ")
-		stmt, err := db.Prepare("insert into user_tab (username, password) values (?, ?)")
+		stmt, err := db.Prepare("insert into user_tab1 (username, password) values (?, ?)")
 		if err != nil {
 			log.Fatal(err)
 			return
@@ -48,7 +48,6 @@ func writeToDb(filename string, db *sql.DB) {
 }
 
 func main() {
-	//wg1.Add(5)
 	db, err := sql.Open("mysql", "root:811149@Tim@/user_db")
 	if err != nil {
 		log.Fatal(err)
@@ -56,10 +55,6 @@ func main() {
 	}
 
 	writeToDb("/Applications/golang_test/user_info/user4.txt", db)
-	//for i := 0; i < 5; i++ {
-	//	go writeToDb("/Applications/golang_test/user_info/user"+strconv.Itoa(i)+".txt", db)
-	//}
-	//wg1.Wait()
 	db.Close()
 	fmt.Printf("%s", "数据库写成功")
 }

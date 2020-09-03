@@ -26,7 +26,9 @@
 - protos文件夹下存的是protobuf协议生成的服务接口和message对应的结构，用于支持grpc
 
 - server文件夹下的程序是项目的主程序，分为两个服务器程序，http是指处理请求的http服务器，tcp是指处理业务逻辑的tcp服务器。
-	1. http文件夹目录
+	<details>
+	<summary>1. http文件夹目录</summary>
+	<pre><code>
 		- api是用于处理http请求的，并且调用了grpc客户端服务
 		- common文件夹下的go文件是用于连接tcp服务器的基础程序
 		- connection文件夹下的go文件是用于构建基于grpc调用tcp服务器服务接口的连接器
@@ -34,11 +36,18 @@
 		- middleware是用于鉴权的中间件文件夹
 		- router是基于gin框架的路由映射器
 		- web文件夹下的是前端静态资源（还在完善中）
-    2. tcp文件夹目录
+	</code></pre>
+	</details>
+
+	<details>
+	<summary>2. tcp文件夹目录</summary>
+	<pre><code>
 		- common文件夹下的go文件是用于各种基础数据处理和连接数据库的基本函数
 		- datamodels下的文件是用于映射数据库实体的
 		- repositories是数据连接仓库，用于对数据库进行sql操作，数据交互的结构体
 		- service是服务，用于调用数据连接仓库进行数据获取并提供服务
+	</code></pre>
+	</details>
 	3. 运行项目时，必须两个文件夹下的main文件同时运行，开启服务器
 
 ## **3. [性能要求]**
